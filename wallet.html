@@ -1,0 +1,206 @@
+<!DOCTYPE html> 
+<html lang="en">
+	<head>
+
+		<title>Bitcoin Wallet</title>
+
+		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<meta name="keywords" content="bitcoin, wallet, multisig, multisignature, address, browser, segwit, javascript, js, broadcast, transaction, verify, decode" />
+		<meta name="description" content="A Bitcoin Wallet written in Javascript. Supports Multisig, SegWit, Custom Transactions, nLockTime and more!" />
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
+		<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+		<link rel="stylesheet" href="css/style.css" media="screen">
+		
+		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="js/moment.min.js"></script>
+		<script type="text/javascript" src="js/transition.js"></script>
+		<script type="text/javascript" src="js/collapse.js"></script>
+
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+
+		<script type="text/javascript" src="js/crypto-min.js"></script>
+		<script type="text/javascript" src="js/crypto-sha256.js"></script>
+		<script type="text/javascript" src="js/crypto-sha256-hmac.js"></script>
+		<script type="text/javascript" src="js/sha512.js"></script>
+		<script type="text/javascript" src="js/ripemd160.js"></script>
+		<script type="text/javascript" src="js/aes.js"></script>
+
+		<script type="text/javascript" src="js/qrcode.js"></script>
+		<script type="text/javascript" src="js/qcode-decoder.min.js"></script>
+		<script type="text/javascript" src="js/jsbn.js"></script>
+		<script type="text/javascript" src="js/ellipticcurve.js"></script>
+
+		<script type="text/javascript" src="js/coin.js"></script>
+		<script type="text/javascript" src="js/coinbin.js"></script>
+	</head>
+
+	<body>
+		
+			<div id="content" class="container">
+
+				<noscript class="alert alert-danger center-block"><span class="glyphicon glyphicon-exclamation-sign"></span> This page uses javascript, please enable it to continue!</noscript>
+
+	
+
+<div class="tab-pane tab-content" id="home">
+						<div class="row">
+							<div class="col-md-12">
+								<h2>Wallet Login<small> Welcome Back!</small></h2>
+								<div id="openLogin">
+									<form class="form-signin" role="form" action="javascript:;">
+
+										<p>Fill in the fields below to login/signup. Note: this is the form for login and signup at the same time.</p>
+
+										<div class="alert alert-warning">
+											<b>Notice</b>: Different email address and password combination will open different wallets, be careful when entering your details as lost accounts can not be recovered! 
+										</div>
+
+										<input id="openEmail" type="email" class="form-control" placeholder="Email address" size="25" required autofocus>
+										&nbsp
+										<input id="openPass" type="password" class="form-control" placeholder="Password" size="25" required>
+
+										<br>
+
+										
+
+										<div id="openLoginStatus" class="alert alert-danger hidden"></div>
+										<button id="openBtn" class="btn btn-primary" type="submit">Submit</button>
+									</form>
+								</div>
+
+								<div id="openWallet" class="hidden">
+									<div class="row">
+										<div class="col-md-12">
+											<p><span style="float:right;"><a href="javascript:;" id="walletLogout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></span>Welcome to your wallet, enjoy your stay!</p>
+										</div>
+										<div class="col-md-12" align="center">
+											<div id="walletQrCode"></div> <br>
+											<div>
+												<span id="walletLoader" class="hidden"><img src="images/loader.gif"></span>
+												<span id="walletAddress"></span> 
+
+												<div class="btn-group">
+													<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" id="walletToBtn">SegWit <span class="caret"></span></button>
+													<ul class="dropdown-menu">
+														<li><a href="javascript:;" id="walletToSegWit">SegWit</a></li>
+														<li><a href="javascript:;" id="walletToSegWitBech32">SegWit/Bech32</a></li>
+														<li><a href="javascript:;" id="walletToLegacy">Legacy</a></li>
+													</ul>
+												</div>
+											</div>
+											<br>
+											<div style="text-align:center; width:350px;">
+												<ul class="nav nav-pills" role="tablist">
+													<li role="presentation" class="active"><a href="javascript:;" id="walletBalance">0.00 BTC</a></li>
+													<li role="presentation"><a href="javascript:;" id="walletShowSpend">Spend</a></li>
+													<li role="presentation"><a id="walletHistory" href="javascript:;" target="_blank">History</a></li>
+													<li role="presentation"><a href="https://localbitcoins.com/?ch=173j" target="_blank">Buy</a></li>
+													<li role="presentation"><a href="javascript:;" id="walletShowKeys">Keys</a></li>
+												</ul>
+
+												<br>
+
+												<div id="walletKeys" class="hidden">
+													<label>Public Key</label>
+													<input class="form-control pubkey" type="text" readonly>
+
+													<div class="walletSegWitRS hidden">
+														<label>Redeem Script <i>(SegWit)</i></label>
+														<input class="form-control" type="text" readonly>
+													</div>
+
+													<label>Private key</label>
+													<div class="input-group">
+														<input class="form-control privkey" type="password" readonly>
+
+														<span class="input-group-btn">
+															<button class="showKey btn btn-default" type="button">Show</button>
+														</span>
+													</div>
+
+													<label>Private Key (AES256 encrypted key)</label>
+													<input class="form-control privkeyaes" type="text" readonly>
+												</div>
+
+												<div id="walletSpend" class="hidden">
+													<div class="row">
+														<div class="form-inline output">
+															<div class="col-xs-8">
+																<label>Address</label>
+															</div>
+
+															<div class="col-xs-3">
+																<label>Amount</label>
+															</div>
+														</div>
+													</div>
+
+													<div class="row" id="walletSpendTo">
+														<div class="form-horizontal output">
+															<div class="col-xs-8">
+																<input type="text" class="form-control addressTo" data-original-title="" title="">
+															</div>
+															<div class="col-xs-3">
+																<input type="text" class="form-control amount" data-original-title="" title="" placeholder="0.00">
+
+															</div>
+
+															<a href="javascript:;" class="addressAdd"><span class="glyphicon glyphicon-plus"></span></a>
+															<br><br>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-xs-6">
+															<label><abbr title="the amount to pay in network miner fee">Transaction Fee</abbr>&nbsp;&nbsp;<a href="javascript:;" id="feesestwallet"><span class="glyphicon glyphicon-question-sign"></span></a></label>
+															<input type="text" class="form-control" value="0.00004000" id="txFee">
+														</div>
+														<div class="col-xs-5">
+															<label><abbr title="the amount to donate to coinb.in">Donation</abbr></label>
+															<input type="text" class="form-control" value="0.003" id="developerDonation">
+														</div>
+													</div>
+													<br>
+
+													<div id="walletSendStatus" class="alert alert-danger hidden"></div>
+
+													<button class="btn btn-primary" type="button" id="walletSendBtn">Send</button>
+													<button class="btn btn-default" type="button">Reset</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+	<!-- warning (fee) modal -->
+	<div class="modal fade" id="modalWarningFee" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title"><b>Warning High Fee!</b></h4>
+				</div>
+
+				<div class="modal-body">
+					Please be aware that you have created a transaction with what seems to be a very high fee of <span id="modalWarningFeeAmount"></span> BTC!
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal" id="warningFeeClose">OK, I've got it!</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- warning (fee) modal -->
+
+	<div class="hidden" id="entropybucket"></div>
+	</body>
+</html>
