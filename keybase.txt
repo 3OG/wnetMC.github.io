@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/wnet
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://wnetmc.github.io
+  * I am wnet (https://keybase.io/wnet) on keybase.
+  * I have a public key ASC1lBnJohl_uEixBQpOZZTutoLPJ16IZVcBdD7jDTpizwo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120f858fc39cf22089ed71ab35b00e5c452e3baa1bcdad136de4e416868fe44a2b80a",
+      "host": "keybase.io",
+      "kid": "0120b59419c9a2197fb848b1050a4e6594eeb682cf275e88655701743ee30d3a62cf0a",
+      "uid": "883a0da9b2706a467e556ddeb2b12b19",
+      "username": "wnet"
+    },
+    "merkle_root": {
+      "ctime": 1645054280,
+      "hash": "c9f2772be896f75cf5a4e7cb5c340c3ac54ff48c84dec34f2adbd91f009213e00c95f1b155022644f1b917ed414a01b08fdd1c2fb9ca297ae2414bd70c77f5d9",
+      "hash_meta": "d22e0cd2901d6e4fb8ab8499b484f25a9cfe018a34fa59c4fc689ffb32330142",
+      "seqno": 21890609
+    },
+    "service": {
+      "entropy": "BlRmifX32e5Bb0qEBLI02GXY",
+      "hostname": "wnetmc.github.io",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.9.0"
+  },
+  "ctime": 1645054337,
+  "expire_in": 504576000,
+  "prev": "215e0feb471be0eaf56cffbee5fe89a953308d1e272d24d35cbbd15ac61ca84e",
+  "seqno": 46,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgtZQZyaIZf7hIsQUKTmWU7raCzydeiGVXAXQ+4w06Ys8Kp3BheWxvYWTESpcCLsQgIV4P60cb4Or1bP++5f6JqVMwjR4nLSTTXLvRWsYcqE7EIGbrTs6HTnmWEDfePdajLfKChLMa7KjmuJKmgFNxrvXVAgHCo3NpZ8RA5cH+FRIAbqPVyGVZ9jWvo2lVwWYH+9Dgd0RmsNzpmWoleeR8CDXFf/QFfo3jEBEl2bUUCow4phPX7CpA/UuUAqhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIMB8IUkHAPp0NVv1SyOaC3LrfAO8YDhUS49LDbHr5A85o3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/wnet
+
+==================================================================
